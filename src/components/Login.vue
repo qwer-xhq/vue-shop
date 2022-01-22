@@ -25,7 +25,7 @@
 </template>
 
 <script>
-  import {login} from '../network/login'
+  // import {login} from '../network/login'
   export default {
     name: 'Login',
     data() {
@@ -53,8 +53,8 @@
             //   console.log(res)
             // })
             console.log('submit!');
-            const result = await login(this.loginForm)
-            console.log(result);
+            const result = await this.$http.login(this.loginForm)
+            // console.log(result);
             if (result.meta.status !== 200) return this.$message.error('登录失败')
             this.$message.success('登录成功')
             sessionStorage.setItem('token',result.data.token)
