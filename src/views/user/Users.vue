@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <!-- 导航面包屑 -->
+    <!-- 面包屑导航 -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>用户管理</el-breadcrumb-item>
@@ -37,7 +37,7 @@
             <el-button type="danger" icon="el-icon-delete" size="mini" @click="deleteUser(scope.row.id)"></el-button>
             <!-- 分配角色按钮 -->
             <el-tooltip class="item" effect="dark" content="分配角色" placement="top" :enterable="false">
-              <el-button type="warning" icon="el-icon-setting" size="mini"></el-button>
+              <el-button type="warning" icon="el-icon-setting" size="mini" @click="showSetRoleDialog(scope.row)"></el-button>
             </el-tooltip>
           </template>
         </el-table-column>
@@ -77,11 +77,7 @@
       </span>
     </el-dialog>
     <!-- 修改用户对话框 -->
-    <el-dialog 
-      title="修改用户" 
-      :visible.sync="editDialogVisible" 
-      width="50%"
-      @close="dialogClose('editFormRef')">
+    <el-dialog title="修改用户" :visible.sync="editDialogVisible" width="50%" @close="dialogClose('editFormRef')">
       <el-form :model="editForm" :rules="addFormRules" ref="editFormRef" label-width="70px">
         <el-form-item label="用户名">
           <el-input v-model="editForm.username" disabled></el-input>
@@ -96,6 +92,27 @@
       <span slot="footer" class="dialog-footer">
         <el-button @click="editDialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="editUserInfo">确 定</el-button>
+      </span>
+    </el-dialog>
+    <!-- 分配角色对话框 -->
+    <el-dialog title="分配角色" :visible.sync="setRoleDialogVisible" width="40%" @close="setRoleDialogColse">
+      <div>
+        <p>当前用户：{{userInfo.username}}</p>
+        <p>当前用户：{{userInfo.role_name}}</p>
+        <p>分配新角色：
+          <el-select v-model="roleId" placeholder="请选择">
+            <el-option
+              v-for="item in rolesList"
+              :key="item.id"
+              :label="item.roleName"
+              :value="item.id">
+            </el-option>
+          </el-select>
+        </p>
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="setRoleDialogVisible= false">取 消</el-button>
+        <el-button type="primary" @click="setRole">确 定</el-button>
       </span>
     </el-dialog>
   </div>
@@ -128,14 +145,14 @@
       }
 
       return {
-        query: '',
+        query: '', // 要查询的文本
         queryInfo: {
           query: '',
           pagenum: 1,
           pagesize: 2,
         },
-        userList: [],
-        total: 0,
+        userList: [], 
+        total: 0, // 用户总数
         addDialogVisible: false, // 控制添加对话框显示与隐藏
         // 添加的用户表单数据
         addForm: {
@@ -165,7 +182,11 @@
         }, 
         editDialogVisible: false, // 控制修改用户对话框的显示与隐藏
         // 修改表单数据
-        editForm: {}
+        editForm: {},
+        setRoleDialogVisible: false, // 控制分配角色对话框的展示
+        userInfo: {}, // 当前分配角色的信息
+        rolesList: [], // 所有角色的数据列表
+        roleId: '', // 选择分配的角色id
       }
     },
     methods: {
@@ -175,6 +196,15 @@
           // console.log(res)
           this.userList = res.data.users
           this.total = res.data.total
+        })
+      },
+      // 获取角色列表
+      getRoleList() {
+        this.$http.getRoleList().then(res => {
+          if (res.meta.status!==200) {
+            return this.$message.error('获取角色列表失败')
+          }
+          this.rolesList = res.data
         })
       },
       // 搜索获取用户列表
@@ -260,7 +290,6 @@
             // 判断删除的是否为当前页最后一条数据
             if (this.queryInfo.pagesize>1 && this.queryInfo.pagenum>1) {
               if (this.total%this.queryInfo.pagesize===1 && Math.ceil(this.total/this.queryInfo.pagesize)===this.queryInfo.pagenum) {
-                console.log('zui');
                 this.queryInfo.pagenum-=1
               }
             }
@@ -279,10 +308,37 @@
             message: '已取消删除'
           });          
         });
+      },
+
+      // 展示分配用户角色对话框
+      showSetRoleDialog(userInfo) {
+        this.userInfo = userInfo
+        this.setRoleDialogVisible = true
+      },
+
+      // 分配用户角色
+      setRole() {
+        if (!this.roleId) {
+          return this.$message.error('请选择要分配的角色')
+        }
+        this.$http.setRole(this.userInfo.id,this.roleId).then(res => {
+          if (res.meta.status !== 200) {
+            return this.$message.error(res.meta.msg)
+          }
+          this.$message.success('分配角色成功')
+          this.getUserList()
+          this.setRoleDialogVisible = false
+        })
+      },
+
+      // 关闭分配角色对话框的事件
+      setRoleDialogColse() {
+        this.roleId = ''
       }
     },
     created() {
       this.getUserList()
+      this.getRoleList()
     }
   }
 </script>

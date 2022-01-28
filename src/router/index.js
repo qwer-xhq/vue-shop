@@ -19,9 +19,9 @@ const routes = [
     redirect: '/home/welcome',
     children: [
       {path: 'welcome',component: () => import('views/home/childComps/Welcome')},
-      {path: 'users',component: () => import('views/home/childComps/Users')},
-      {path: 'roles',component: () => import('views/home/childComps/Roles')},
-      {path: 'rights',component: () => import('views/home/childComps/Rights')},
+      {path: 'users',component: () => import('views/user/Users')},
+      {path: 'roles',component: () => import('views/power/Roles')},
+      {path: 'rights',component: () => import('views/power/Rights')},
       {path: 'goods',component: () => import('views/home/childComps/Goods')},
       {path: 'params',component: () => import('views/home/childComps/Params')},
       {path: 'categories',component: () => import('views/home/childComps/Categories')},
@@ -39,9 +39,9 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   const tokenStr = window.sessionStorage.getItem('token')
   if (to.path === '/login') {
-    if (tokenStr) {  // 访问login如果存在token直接登录到首页
-      return next('/home')
-    }
+    // if (tokenStr) {  // 访问login如果存在token直接登录到首页
+    //   return next('/home')
+    // }
     return next()
   }  // 访问login直接放行
   if (!tokenStr) return next('/login')  // 如果没有token，跳转到login
