@@ -12,7 +12,7 @@ html,body,#app {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15) !important;
 }
 
-.el-table {
+.el-table,.zk-table {
   margin-top: 15px;
 }
 .el-pagination {
@@ -20,4 +20,7 @@ html,body,#app {
 }
 .el-form-item.is-success .el-input__inner, .el-form-item.is-success .el-input__inner:focus, .el-form-item.is-success .el-textarea__inner, .el-form-item.is-success .el-textarea__inner:focus {
   border-color:#67C23A
+}
+.el-cascader-panel{
+  height: 300px;
 }

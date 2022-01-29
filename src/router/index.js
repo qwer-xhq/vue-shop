@@ -22,9 +22,9 @@ const routes = [
       {path: 'users',component: () => import('views/user/Users')},
       {path: 'roles',component: () => import('views/power/Roles')},
       {path: 'rights',component: () => import('views/power/Rights')},
-      {path: 'goods',component: () => import('views/home/childComps/Goods')},
-      {path: 'params',component: () => import('views/home/childComps/Params')},
-      {path: 'categories',component: () => import('views/home/childComps/Categories')},
+      {path: 'goods',component: () => import('views/goods/Goods')},
+      {path: 'params',component: () => import('views/goods/Params')},
+      {path: 'categories',component: () => import('views/goods/Categories')},
       {path: 'orders',component: () => import('views/home/childComps/Orders')},
       {path: 'reports',component: () => import('views/home/childComps/Reports')},
     ]
