@@ -92,6 +92,7 @@
   }
   .el-main {
     background-color: #eaedf1;
+    overflow: hidden;
   }
   .home-menu {
     border: 0;

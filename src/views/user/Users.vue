@@ -1,11 +1,7 @@
 <template>
   <div class="">
     <!-- 面包屑导航 -->
-    <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>用户管理</el-breadcrumb-item>
-      <el-breadcrumb-item>用户列表</el-breadcrumb-item>
-    </el-breadcrumb>
+    <Breadcrumb :navTitle="['首页','用户管理','用户列表']"></Breadcrumb>
     <!-- 内容卡片 -->
     <el-card>
       <el-row :gutter="20">
@@ -120,8 +116,12 @@
 
 <script>
   // import {getUserList,userStateChanged} from 'network/userList'
+  import Breadcrumb from 'components/content/breadcrumb/Breadcrumb'
   export default {
     name: 'Users',
+    components: {
+      Breadcrumb,
+    },
     data() {
       // 验证邮箱的规则
       const validateEmail = (rule, value, cb) => {

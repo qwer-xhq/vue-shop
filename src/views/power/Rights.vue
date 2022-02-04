@@ -50,5 +50,8 @@
 </script>
 
 <style scoped>
-  
+  .el-table {
+    height: 500px;
+    overflow-y: scroll;
+  }
 </style>

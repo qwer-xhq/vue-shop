@@ -139,7 +139,6 @@ import RolesVue from '../power/Roles.vue'
         addCateFormRules: {
           cat_name: [
             {required: true, message: '请输入分类名称', trigger: 'blur'},
-            {min: 3, max: 15, message: '分类名称的长度在3~15个字符之间', tigger: 'blur'}
           ]
         },
         // 父级分类列表

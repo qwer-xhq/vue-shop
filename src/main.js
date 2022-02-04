@@ -5,6 +5,7 @@ import './plugins/element.js'
 import './assets/css/global.css'
 import './assets/fonts/iconfont.css'
 import TreeTable from 'vue-table-with-tree-grid'
+import Breadcrumb from 'components/content/breadcrumb/Breadcrumb'
 
 // 配置axios请求
 // import axios from 'axios'
@@ -16,6 +17,7 @@ Vue.config.productionTip = false
 Vue.prototype.$http = request
 
 Vue.component('tree-table',TreeTable)
+Vue.component('Breadcrumb',Breadcrumb)
 
 new Vue({
   router,

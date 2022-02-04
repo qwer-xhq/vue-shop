@@ -52,7 +52,7 @@
             // login(this.loginForm).then(res => {
             //   console.log(res)
             // })
-            console.log('submit!');
+            // console.log('submit!');
             const result = await this.$http.login(this.loginForm)
             // console.log(result);
             if (result.meta.status !== 200) return this.$message.error('登录失败')
