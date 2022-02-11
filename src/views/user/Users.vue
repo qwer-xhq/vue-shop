@@ -287,8 +287,8 @@
              return this.$message.error('删除失败') 
             }
 
-            // 判断删除的是否为当前页最后一条数据
-            if (this.queryInfo.pagesize>1 && this.queryInfo.pagenum>1) {
+            // 如果最后一页只剩一条数据，判断删除的是否为最后一页最后一条数据
+            if (this.queryInfo.pagenum>1) {
               if (this.total%this.queryInfo.pagesize===1 && Math.ceil(this.total/this.queryInfo.pagesize)===this.queryInfo.pagenum) {
                 this.queryInfo.pagenum-=1
               }

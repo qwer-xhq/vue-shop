@@ -19,14 +19,15 @@ const routes = [
     redirect: '/home/welcome',
     children: [
       {path: 'welcome',component: () => import('views/home/childComps/Welcome')},
-      {path: 'users',component: () => import('views/user/Users')},
-      {path: 'roles',component: () => import('views/power/Roles')},
-      {path: 'rights',component: () => import('views/power/Rights')},
-      {path: 'goods',component: () => import('views/goods/Goods')},
-      {path: 'params',component: () => import('views/goods/Params')},
-      {path: 'categories',component: () => import('views/goods/Categories')},
-      {path: 'orders',component: () => import('views/home/childComps/Orders')},
-      {path: 'reports',component: () => import('views/home/childComps/Reports')},
+      {path: '/users',component: () => import('views/user/Users')},
+      {path: '/roles',component: () => import('views/power/Roles')},
+      {path: '/rights',component: () => import('views/power/Rights')},
+      {path: '/params',component: () => import('views/goods/Params')},
+      {path: '/goods',component: () => import('views/goods/GoodsList')},
+      {path: '/goods/add',component: () => import('views/goods/AddGoods')},
+      {path: '/categories',component: () => import('views/goods/Categories')},
+      {path: '/orders',component: () => import('views/home/childComps/Orders')},
+      {path: '/reports',component: () => import('views/home/childComps/Reports')},
     ]
   },
 ]

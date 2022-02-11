@@ -1,5 +1,36 @@
 import { request } from "./request";
 
+// 获取商品列表数据
+export function getGoodsList(params) {
+  return request({
+    url: 'goods',
+    params,
+  })
+}
+// 添加商品
+export function addGoods(params) {
+  return request({
+    method: 'post',
+    url: 'goods',
+    data: params
+  })
+}
+// 编辑提交商品
+export function editGoods({id,...params}) {
+  return request({
+    method: 'put',
+    url: 'goods',
+    data: params
+  })
+}
+// 删除商品
+export function deleteGoods(id) {
+  return request({
+    method: 'delete',
+    url: 'goods/'+id,
+  })
+}
+
 // 获取商品分类数据列表
 export function getCatesList(params) {
   return request({
