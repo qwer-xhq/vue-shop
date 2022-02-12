@@ -25,8 +25,9 @@ const routes = [
       {path: '/params',component: () => import('views/goods/Params')},
       {path: '/goods',component: () => import('views/goods/GoodsList')},
       {path: '/goods/add',component: () => import('views/goods/AddGoods')},
+      {path: '/goods/edit/:id',component: () => import('views/goods/EditGoods/')},
       {path: '/categories',component: () => import('views/goods/Categories')},
-      {path: '/orders',component: () => import('views/home/childComps/Orders')},
+      {path: '/orders',component: () => import('views/order/Order')},
       {path: '/reports',component: () => import('views/home/childComps/Reports')},
     ]
   },

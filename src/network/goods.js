@@ -15,11 +15,17 @@ export function addGoods(params) {
     data: params
   })
 }
+// 根据id查询商品
+export function getGoodsById(id) {
+  return request({
+    url: 'goods/'+id
+  })
+}
 // 编辑提交商品
-export function editGoods({id,...params}) {
+export function editGoods(id,params) {
   return request({
     method: 'put',
-    url: 'goods',
+    url: 'goods/'+id,
     data: params
   })
 }

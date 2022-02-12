@@ -28,7 +28,7 @@
         <el-table-column label="操作" width="130">
           <template #default="scope">
             <!-- 修改按钮 -->
-            <el-button type="primary" icon="el-icon-edit" size="mini" @click="addGoodsPage"></el-button>
+            <el-button type="primary" icon="el-icon-edit" size="mini" @click="editGoodsPage(scope.row.goods_id)"></el-button>
             <!-- 删除按钮 -->
             <el-button type="danger" icon="el-icon-delete" size="mini" @click="deleteGoods(scope.row.goods_id)"></el-button>
           </template>
@@ -133,8 +133,14 @@
           });          
         });
       },
+      // 跳转到添加商品页面
       addGoodsPage() {
         this.$router.push(this.$route.fullPath+'/add')
+      },
+      // 跳转到修改商品页面
+      editGoodsPage(id) {
+        console.log(id);
+        this.$router.push(this.$route.fullPath+'/edit/'+id)
       }
     },
     created() {

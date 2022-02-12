@@ -221,7 +221,6 @@
         const picIndex = this.addForm.pics.findIndex(item => {
           return item.pic === file.response.data.tmp_path
         })
-        console.log(picIndex);
         this.addForm.pics.splice(picIndex,1)
       },
       // 图片上传成功是的钩子函数
