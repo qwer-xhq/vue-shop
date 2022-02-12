@@ -4,5 +4,6 @@ import * as userListApi from "./userList"  // 导入userList的全部导出元�
 import * as powerApi from "./power"
 import * as goodsApi from "./goods"
 import * as orderApi from "./order"
+import { getReportData } from "./report"
 
-export default  {login, getMenuList, ...userListApi,...powerApi, ...goodsApi, ...orderApi}
+export default  {login, getMenuList, getReportData,...userListApi,...powerApi, ...goodsApi, ...orderApi}

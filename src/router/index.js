@@ -28,7 +28,7 @@ const routes = [
       {path: '/goods/edit/:id',component: () => import('views/goods/EditGoods/')},
       {path: '/categories',component: () => import('views/goods/Categories')},
       {path: '/orders',component: () => import('views/order/Order')},
-      {path: '/reports',component: () => import('views/home/childComps/Reports')},
+      {path: '/reports',component: () => import('views/report/Reports')},
     ]
   },
 ]

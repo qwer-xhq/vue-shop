@@ -5,6 +5,7 @@
       <el-input placeholder="请输入内容" v-model="query" clearable style="width: 400px" @clear="inputSearchOrder">
         <el-button slot="append" icon="el-icon-search" @click="inputSearchOrder"></el-button>
       </el-input>
+      <!-- 订单表格内容 -->
       <el-table :data="orderList" border stripe>
         <el-table-column type="index"></el-table-column>
         <el-table-column label="订单编号" prop="order_number"></el-table-column>
@@ -28,16 +29,17 @@
           </template>
         </el-table-column>
       </el-table>
+      <!-- 分页 -->
+      <el-pagination
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="queryInfo.pagenum"
+        :page-sizes="[10, 15, 20, 30]"
+        :page-size="queryInfo.pagesize"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="orderTotal">
+      </el-pagination>
     </el-card>
-    <el-pagination
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-      :current-page="queryInfo.pagenum"
-      :page-sizes="[10, 15, 20, 30]"
-      :page-size="queryInfo.pagesize"
-      layout="total, sizes, prev, pager, next, jumper"
-      :total="orderTotal">
-    </el-pagination>
     <!-- 修改地址对话框 -->
     <el-dialog
       title="修改地址"
