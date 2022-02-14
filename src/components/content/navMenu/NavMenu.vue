@@ -8,12 +8,12 @@
     router
     :default-active="activePath"
   >
-    <el-submenu :index="`${item.id}`" v-for="(item,index) in menuList">
+    <el-submenu :index="`${item.id}`" v-for="(item,index) in menuList" :key="index">
       <template slot="title">
         <i :class="icon[index]"></i>
         <span>{{item.authName}}</span>
       </template>
-      <el-menu-item :index="`/${item1.path}`" v-for="(item1,index1) in item.children">
+      <el-menu-item :index="`/${item1.path}`" v-for="(item1,index1) in item.children" :key="index">
         <template slot="title">
           <i class="el-icon-menu"></i>
           <span>{{item1.authName}}</span>
